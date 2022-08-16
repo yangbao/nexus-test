@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>nexus-test</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <name>nexus-test</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -107,6 +107,6 @@
         <!--        配置git仓库地址, 需要读权限-->
         <connection>scm:git:git@github.com:yangbao/nexus-test.git</connection>
         <url>scm:git:git@github.com:yangbao/nexus-test.git</url>
-      <tag>v1.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 </project>
