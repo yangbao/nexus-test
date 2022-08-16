@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>nexus-test</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>nexus-test</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -90,12 +90,12 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-relese-plugin</artifactId>
+                <artifactId>maven-release-plugin</artifactId>
                 <configuration>
 <!--                    子module自动使用父module的版本号-->
                     <autoVersionSubmodules>true</autoVersionSubmodules>
 <!--                    发布时打的git tag的标签, springboot 使用@, 其他使用$-->
-                    <tagNmaeFormat>v@{project.version}</tagNmaeFormat>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
 <!--                    设置运行参数-->
                     <arguments>-DskipTests</arguments>
                 </configuration>
@@ -104,9 +104,9 @@
     </build>
     <scm>
 <!--        配置git仓库地址, 需要写权限-->
-        <developerConnection>scm:git:</developerConnection>
+        <developerConnection>scm:git:git@github.com:yangbao/nexus-test.git</developerConnection>
         <!--        配置git仓库地址, 需要读权限-->
-        <connection></connection>
-        <url></url>
+        <connection>scm:git:git@github.com:yangbao/nexus-test.git</connection>
+        <url>scm:git:git@github.com:yangbao/nexus-test.git</url>
     </scm>
 </project>
