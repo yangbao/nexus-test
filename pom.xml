@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.2</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.example</groupId>
+    <artifactId>nexus-test</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>nexus-test</name>
+    <description>Demo project for Spring Boot</description>
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j2 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <version>2.7.2</version>
+        </dependency>
+    </dependencies>
+    <repositories>
+<!--        项目的依赖从这里下载-->
+        <repository>
+            <id>maven-public</id>
+            <name>maven public repo</name>
+            <url>http://192.168.50.249:8081/repository/maven-public/</url>
+            <releases>
+        <!--   允许从该仓库下载正式版本的依赖-->
+                <enabled>true</enabled>
+<!--                <updatePolicy>更新依赖的策略</updatePolicy>-->
+<!--                <checksumPolicy>校验和</checksumPolicy>-->
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+<!--    maven自身使用插件的地址-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven-public</id>
+            <name>maven public repo</name>
+            <url>http://192.168.50.249:8081/repository/maven-public/</url>
+            <releases>
+                <!--   允许从该仓库下载正式版本的依赖-->
+                <enabled>true</enabled>
+                <!--                <updatePolicy>更新依赖的策略</updatePolicy>-->
+                <!--                <checksumPolicy>校验和</checksumPolicy>-->
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+    <distributionManagement>
+<!--        发布snapshot版本-->
+        <snapshotRepository>
+            <id>maven-snapshots</id>
+            <name>maven snapshots repo</name>
+            <url>http://192.168.50.249:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+<!--        发布正式版本-->
+        <repository>
+            <id>maven-releases</id>
+            <name>maven releases repo</name>
+            <url>http://192.168.50.249:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-relese-plugin</artifactId>
+                <configuration>
+<!--                    子module自动使用父module的版本号-->
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+<!--                    发布时打的git tag的标签, springboot 使用@, 其他使用$-->
+                    <tagNmaeFormat>v@{project.version}</tagNmaeFormat>
+<!--                    设置运行参数-->
+                    <arguments>-DskipTests</arguments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <scm>
+<!--        配置git仓库地址, 需要写权限-->
+        <developerConnection>scm:git:</developerConnection>
+        <!--        配置git仓库地址, 需要读权限-->
+        <connection></connection>
+        <url></url>
+    </scm>
+</project>
